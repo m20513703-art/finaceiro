@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDV Financeiro - Climatização</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topo">
+        <div class="logo">
+            <span>❄️</span>
+            <div>
+                <strong>Climatização</strong>
+                <small>PDV Financeiro</small>
+            </div>
+        </div>
+
+        <div class="usuario">
+            <span>👤</span>
+            <div>
+                <strong>Administrador</strong>
+                <small>Financeiro</small>
+            </div>
+        </div>
+    </header>
+
+    <aside class="menu">
+
+        <button class="menu-item ativo" data-pagina="inicio">
+            🏠 <span>Início</span>
+        </button>
+
+        <button class="menu-item" data-pagina="entradas">
+            📥 <span>Entradas</span>
+        </button>
+
+        <button class="menu-item" data-pagina="saidas">
+            📤 <span>Saídas</span>
+        </button>
+
+        <button class="menu-item" data-pagina="receber">
+            💳 <span>Contas a Receber</span>
+        </button>
+
+        <button class="menu-item" data-pagina="pagar">
+            🧾 <span>Contas a Pagar</span>
+        </button>
+
+        <button class="menu-item" data-pagina="caixa">
+            💰 <span>Caixa</span>
+        </button>
+
+        <button class="menu-item" data-pagina="relatorios">
+            📊 <span>Relatórios</span>
+        </button>
+
+        <button class="menu-item" data-pagina="configuracao">
+            ⚙️ <span>Configuração</span>
+        </button>
+
+    </aside>
+
+    <main class="conteudo">
+
+        <!-- INÍCIO -->
+        <section id="inicio" class="pagina ativa-pagina">
+
+            <div class="cabecalho-pagina">
+                <div>
+                    <h1>Dashboard Financeiro</h1>
+                    <p>Visão geral do financeiro da empresa.</p>
+                </div>
+
+                <button class="btn-principal" data-acao="nova-entrada">
+                    + Nova entrada
+                </button>
+            </div>
+
+            <div class="cards-financeiros">
+
+                <div class="card financeiro">
+                    <div class="icone">📥</div>
+                    <div>
+                        <span>Total de entradas</span>
+                        <strong id="totalEntradas">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <div class="card financeiro">
+                    <div class="icone">📤</div>
+                    <div>
+                        <span>Total de saídas</span>
+                        <strong id="totalSaidas">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <div class="card financeiro destaque">
+                    <div class="icone">💰</div>
+                    <div>
+                        <span>Saldo atual</span>
+                        <strong id="saldoAtual">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <div class="card financeiro">
+                    <div class="icone">⏳</div>
+                    <div>
+                        <span>A receber</span>
+                        <strong id="totalReceber">R$ 0,00</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="grid-dashboard">
+
+                <div class="painel">
+                    <div class="painel-topo">
+                        <div>
+                            <h2>Movimentações recentes</h2>
+                            <p>Últimos lançamentos financeiros</p>
+                        </div>
+                    </div>
+
+                    <div id="movimentacoesRecentes" class="lista">
+                        <div class="vazio">
+                            Nenhuma movimentação cadastrada.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="painel">
+                    <div class="painel-topo">
+                        <div>
+                            <h2>Resumo</h2>
+                            <p>Informações financeiras</p>
+                        </div>
+                    </div>
+
+                    <div class="resumo-box">
+
+                        <div>
+                            <span>Contas a pagar</span>
+                            <strong id="resumoPagar">R$ 0,00</strong>
+                        </div>
+
+                        <div>
+                            <span>Contas a receber</span>
+                            <strong id="resumoReceber">R$ 0,00</strong>
+                        </div>
+
+                        <div>
+                            <span>Quantidade de entradas</span>
+                            <strong id="qtdEntradas">0</strong>
+                        </div>
+
+                        <div>
+                            <span>Quantidade de saídas</span>
+                            <strong id="qtdSaidas">0</strong>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ENTRADAS -->
+        <section id="entradas" class="pagina">
+
+            <div class="cabecalho-pagina">
+                <div>
+                    <h1>Entradas</h1>
+                    <p>Dinheiro recebido pela empresa.</p>
+                </div>
+
+                <button class="btn-principal" data-acao="nova-entrada">
+                    + Nova entrada
+                </button>
+            </div>
+
+            <div class="barra-filtros">
+                <input
+                    type="text"
+                    id="buscarEntrada"
+                    placeholder="🔎 Buscar entrada..."
+                >
+            </div>
+
+            <div class="painel">
+                <div id="listaEntradas" class="lista">
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- SAÍDAS -->
+        <section id="saidas" class="pagina">
+
+            <div class="cabecalho-pagina">
+                <div>
+                    <h1>Saídas</h1>
+                    <p>Despesas e pagamentos realizados.</p>
+                </div>
+
+                <button class="btn-perigo" data-acao="nova-saida">
+                    + Nova saída
+                </button>
+            </div>
+
+            <div class="barra-filtros">
+                <input
+                    type="text"
+                    id="buscarSaida"
+                    placeholder="🔎 Buscar saída..."
+                >
+            </div>
+
+            <div class="painel">
+                <div id="listaSaidas" class="lista">
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- CONTAS A RECEBER -->
+        <section id="receber" class="pagina">
+
+            <div class="cabecalho-pagina">
+                <div>
+                    <h1>Contas a Receber</h1>
+                    <p>Valores que a empresa ainda receberá.</p>
+                </div>
+
+                <button class="btn-principal" data-acao="nova-receber">
+                    + Nova conta
+                </button>
+            </div>
+
+            <div class="painel">
+                <div id="listaReceber" class="lista">
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- CONTAS A PAGAR -->
+        <section id="pagar" class="pagina">
+
+            <div class="cabecalho-pagina">
+                <div>
+                    <h1>Contas a Pagar</h1>
+                    <p>Contas e despesas futuras.</p>
+                </div>
+
+                <button class="btn-perigo" data-acao="nova-pagar">
+                    + Nova conta
+                </button>
+            </div>
+
+            <div class="painel">
+                <div id="listaPagar" class="lista">
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- CAIXA -->
+        <section id="caixa" class="pagina">
+
+            <div class="cabecalho-pagina">
+                <div>
+                    <h1>Caixa</h1>
+                    <p>Controle financeiro do caixa.</p>
+                </div>
+            </div>
+
+            <div class="cards-financeiros">
+
+                <div class="card financeiro">
+                    <div class="icone">💵</div>
+                    <div>
+                        <span>Entradas</span>
+                        <strong id="caixaEntradas">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <div class="card financeiro">
+                    <div class="icone">💸</div>
+                    <div>
+                        <span>Saídas</span>
+                        <strong id="caixaSaidas">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <div class="card financeiro destaque">
+                    <div class="icone">🏦</div>
+                    <div>
+                        <span>Saldo em caixa</span>
+                        <strong id="caixaSaldo">R$ 0,00</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="painel">
+                <div class="painel-topo">
+                    <h2>Histórico do caixa</h2>
+                </div>
+
+                <div id="historicoCaixa" class="lista">
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- RELATÓRIOS -->
+        <section id="relatorios" class="pagina">
+
+            <div class="cabecalho-pagina">
+                <div>
+                    <h1>Relatórios</h1>
+                    <p>Resumo das movimentações financeiras.</p>
+                </div>
+            </div>
+
+            <div class="relatorios-grid">
+
+                <div class="relatorio-card">
+                    <span>📥</span>
+                    <h3>Entradas</h3>
+                    <strong id="relatorioEntradas">R$ 0,00</strong>
+                </div>
+
+                <div class="relatorio-card">
+                    <span>📤</span>
+                    <h3>Saídas</h3>
+                    <strong id="relatorioSaidas">R$ 0,00</strong>
+                </div>
+
+                <div class="relatorio-card">
+                    <span>💰</span>
+                    <h3>Saldo</h3>
+                    <strong id="relatorioSaldo">R$ 0,00</strong>
+                </div>
+
+                <div class="relatorio-card">
+                    <span>📋</span>
+                    <h3>Lançamentos</h3>
+                    <strong id="relatorioLancamentos">0</strong>
+                </div>
+
+            </div>
+
+            <div class="painel">
+                <div class="painel-topo">
+                    <h2>Resumo financeiro</h2>
+                </div>
+
+                <div id="relatorioDetalhado" class="relatorio-detalhado">
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- CONFIGURAÇÃO -->
+        <section id="configuracao" class="pagina">
+
+            <div class="cabecalho-pagina">
+                <div>
+                    <h1>Configuração</h1>
+                    <p>Configurações do PDV Financeiro.</p>
+                </div>
+            </div>
+
+            <div class="config-grid">
+
+                <div class="config-card">
+                    <span>💳</span>
+                    <h3>Formas de pagamento</h3>
+                    <p>Dinheiro, Pix, cartão e outras formas.</p>
+                    <button data-acao="formas-pagamento">
+                        Configurar
+                    </button>
+                </div>
+
+                <div class="config-card">
+                    <span>🗂️</span>
+                    <h3>Categorias</h3>
+                    <p>Organize receitas e despesas.</p>
+                    <button data-acao="categorias">
+                        Configurar
+                    </button>
+                </div>
+
+                <div class="config-card">
+                    <span>🧹</span>
+                    <h3>Dados do sistema</h3>
+                    <p>Limpar os dados armazenados neste navegador.</p>
+                    <button class="btn-perigo" data-acao="limpar-dados">
+                        Limpar dados
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL -->
+
+    <div id="modal" class="modal">
+
+        <div class="modal-caixa">
+
+            <div class="modal-topo">
+                <h2 id="tituloModal">Novo lançamento</h2>
+
+                <button id="fecharModal" class="fechar">
+                    ×
+                </button>
+            </div>
+
+            <form id="formModal">
+
+                <div id="camposModal"></div>
+
+                <div class="modal-botoes">
+
+                    <button
+                        type="button"
+                        class="btn-secundario"
+                        id="cancelarModal"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Salvar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
